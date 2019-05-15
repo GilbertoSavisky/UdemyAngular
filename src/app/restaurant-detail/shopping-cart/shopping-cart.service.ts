@@ -1,7 +1,5 @@
-import { CartItem } from "./cart-item.motel";
+import { CartItem } from "./cart-item.model";
 import { MenuItem } from "../menu-item/menu-item.model";
-import { ValueTransformer } from "@angular/compiler/src/util";
-
 
 export class ShoppingCartService{
     items: CartItem[] = []
@@ -20,13 +18,13 @@ export class ShoppingCartService{
 
     }
 
-    removeItem(item:any){
+    removeItem(item:CartItem){
         this.items.splice(this.items.indexOf(item), 1)
     }
 
     total():number{
         return this.items
-            .map(item => item
-            .value()).reduce((prev, value)=> prev+value, 0)
+            .map(item => item.value())
+            .reduce((prev, value)=> prev + value, 0)
     }
 }
