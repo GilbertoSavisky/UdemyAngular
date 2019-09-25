@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Restaurant } from './restaurant.model';
 
 @Component({
@@ -7,7 +7,7 @@ import { Restaurant } from './restaurant.model';
 })
 export class RestaurantComponent implements OnInit {
 
-  @Input() restaurant: Restaurant 
+  @Input() restaurant: Restaurant;
 
   constructor() { }
 
