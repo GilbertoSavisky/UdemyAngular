@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { ROUTES } from './app.routes';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
+import { OrderSummaryComponent } from './order-summary/order-summary.component';
+import { DeliveryCostsComponent } from './order/delivery-costs/delivery-costs.component';
 import { OrderItemsComponent } from './order/order-items/order-items.component';
 import { OrderComponent } from './order/order.component';
 import { OrderService } from './order/order.services';
@@ -22,8 +24,7 @@ import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { RestaurantsService } from './restaurants/restaurants.service';
 import { InputComponent } from './shared/input/input.component';
 import { RadioComponent } from './shared/radio/radio.component';
-import { DeliveryCostsComponent } from './order/delivery-costs/delivery-costs.component';
-import { OrderSummaryComponent } from './order-summary/order-summary.component';
+import { RatingComponent } from './shared/rating/rating.component';
 
 
 
@@ -47,7 +48,8 @@ import { OrderSummaryComponent } from './order-summary/order-summary.component';
     RadioComponent,
     OrderItemsComponent,
     DeliveryCostsComponent,
-    OrderSummaryComponent
+    OrderSummaryComponent,
+    RatingComponent
   ],
   imports: [
     BrowserModule,
