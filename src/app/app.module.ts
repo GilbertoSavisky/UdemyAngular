@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { ROUTES } from './app.routes';
-import { CoreModule } from './core/core.module';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
@@ -16,10 +15,6 @@ import { ShoppingCartComponent } from './restaurant-detail/shopping-cart/shoppin
 import { RestaurantComponent } from './restaurants/restaurant/restaurant.component';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { SharedModule } from './shared/shared.module';
-
-
-
-
 
 @NgModule({
   declarations: [
@@ -38,8 +33,7 @@ import { SharedModule } from './shared/shared.module';
   imports: [
     BrowserModule,
     HttpModule,
-    SharedModule,
-    CoreModule,
+    SharedModule.forRoot(),
     RouterModule.forRoot(ROUTES)
   ],
     providers: [{provide: LOCALE_ID, useValue: 'pt-BR'}],
