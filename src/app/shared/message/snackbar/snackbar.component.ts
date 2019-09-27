@@ -1,6 +1,8 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import 'rxjs/add/observable/timer';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { NotificationService } from '../notifications.service';
 
@@ -19,8 +21,8 @@ import { NotificationService } from '../notifications.service';
         opacity: 1,
         bottom: '30px'
       })),
-      transition('visible => hidden', animate('500ms 0s ease-out')),
-      transition('hidden => visible', animate('500ms 0s ease-in'))
+      transition('hidden => visible', animate('500ms 0s ease-in')),
+      transition('visible => hidden', animate('500ms 0s ease-out'))
     ])
   ]
 })
@@ -28,14 +30,13 @@ export class SnackbarComponent implements OnInit {
 
   snackVisibility = 'hidden';
   message: string;
-  constructor(private notificationsService: NotificationService) { }
+  constructor(private notificationService: NotificationService) { }
 
 
   ngOnInit() {
-    this.notificationsService.notifier.subscribe(message => {
+    this.notificationService.notifier.do((message: string) => {
       this.message = message;
       this.snackVisibility = 'visible';
-      Observable.timer(3000).subscribe(timer => this.snackVisibility = 'hidden');
-    });
+    }).switchMap((message: any) => Observable.timer(3000)).subscribe((timer: any) => this.snackVisibility = 'hidden');
   }
 }
