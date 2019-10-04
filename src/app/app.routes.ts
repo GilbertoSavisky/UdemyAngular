@@ -6,10 +6,12 @@ import { MenuComponent } from './restaurant-detail/menu/menu.component';
 import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail.component';
 import { ReviewsComponent } from './restaurant-detail/reviews/reviews.component';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
+import { LoginComponent } from './scurity/login/login.component';
 
 export const ROUTES: Routes = [
-    {path: '', component: HomeComponent},
-    {path: 'restaurants', component: RestaurantsComponent},
+  {path: '', component: HomeComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'restaurants', component: RestaurantsComponent},
     {path: 'restaurants/:id', component: RestaurantDetailComponent,
         children: [
             {path: '', redirectTo: 'menu', pathMatch: 'full'},
