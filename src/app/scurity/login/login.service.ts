@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { MEAT_API } from 'app/app.api';
 import 'rxjs/add/operator/do';
 import { Observable } from 'rxjs/Observable';
@@ -9,7 +10,7 @@ import { User } from './user.model';
 export class LoginService {
 
   user: User;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   isloggedIn(): boolean {
     return this.user !== undefined;
@@ -18,5 +19,9 @@ export class LoginService {
     return this.http.post<User>(`${MEAT_API}/login`,
       {email: email, password: password})
       .do(user => this.user = user)
+  }
+
+  handleLogin(path?: string) {
+    this.router.navigate(['/login', path]);
   }
 }

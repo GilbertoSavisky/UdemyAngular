@@ -11,7 +11,7 @@ import { Order } from './order.model';
 export class OrderService {
 
   constructor(private cartService: ShoppingCartService,
-    private loginService: LoginService
+    private loginService: LoginService,
     private http: HttpClient) {}
 
   cartItems(): CartItem[] {
