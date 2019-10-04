@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { Router } from '@angular/router';
 import { CartItem } from 'app/restaurant-detail/shopping-cart/cart-item.model';
 import { RadioOption } from 'app/shared/radio/radio-option.model';
+import 'rxjs/add/operator/do';
 import { Order, OrderItem } from './order.model';
 import { OrderService } from './order.services';
 
@@ -14,6 +15,7 @@ export class OrderComponent implements OnInit {
 
   orderForm: FormGroup;
   delivery = 8;
+  orderId: string;
   emailPattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
   numberPattern = /^[0-9]*$/;
 
@@ -72,11 +74,20 @@ export class OrderComponent implements OnInit {
     this.orderService.remove(item);
   }
   checkOrder(order: Order) {
-    order.orderItems = this.cartItems().map((item: CartItem) => new OrderItem(item.quantity, item.menuItem.id));
-    this.orderService.checkOrder(order).subscribe((orderId: string) => {
+    order.orderItems = this.cartItems()
+      .map((item: CartItem) => new OrderItem(item.quantity, item.menuItem.id));
+
+    this.orderService.checkOrder(order)
+      .do((orderId: string) => {
+        this.orderId = orderId
+      })
+      .subscribe((orderId: string) => {
       this.router.navigate(['/order-summary']);
       this.orderService.clear();
     });
-    console.log(order);
+  }
+
+  isOrderCompletd(): boolean {
+    return this.orderId !== undefined;
   }
 }
