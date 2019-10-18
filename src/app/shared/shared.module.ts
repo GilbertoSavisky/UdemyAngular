@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LeaveOrderGuard } from 'app/order/leave-order-guard';
 import { OrderService } from 'app/order/order.services';
 import { ShoppingCartService } from 'app/restaurant-detail/shopping-cart/shopping-cart.service';
 import { RestaurantsService } from 'app/restaurants/restaurants.service';
+import { AuthInterceptor } from 'app/scurity/auth.interceptor';
 import { LoggedInGuard } from 'app/scurity/loggedin.guard';
 import { LoginService } from 'app/scurity/login/login.service';
 import { InputComponent } from './input/input.component';
@@ -46,7 +48,8 @@ export class SharedModule {
         OrderService,
         NotificationService,
         LoggedInGuard,
-        LeaveOrderGuard
+        LeaveOrderGuard,
+        {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
       ]
     };
   }

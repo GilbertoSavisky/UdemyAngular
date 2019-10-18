@@ -1,11 +1,11 @@
-import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot } from '@angular/router';
 import { OrderComponent } from './order.component';
 
-export class LeaveOrderGuard implements canDeactivate<OrderComponent> {
+export class LeaveOrderGuard implements CanDeactivate<OrderComponent> {
   canDeactivate(orderComponent: OrderComponent,
       activatedRoute: ActivatedRouteSnapshot,
       routerState: RouterStateSnapshot): boolean {
-    if(!orderComponent.isOrderCompleted()) {
+    if (!orderComponent.isOrderCompletd()) {
       return window.confirm('Deseja desistir da compra?');
     } else {
       return true;
