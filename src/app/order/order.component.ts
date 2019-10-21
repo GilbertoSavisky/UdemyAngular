@@ -30,7 +30,7 @@ export class OrderComponent implements OnInit {
               private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.orderForm = this.formBuilder.group({
+    this.orderForm = new FormGroup({
       name: this.formBuilder.control('', [Validators.minLength(5), Validators.required]),
       email: this.formBuilder.control('', [Validators.minLength(5), Validators.required, Validators.pattern(this.emailPattern)]),
       number: this.formBuilder.control('', [Validators.required, Validators.pattern(this.numberPattern)]),
@@ -39,7 +39,7 @@ export class OrderComponent implements OnInit {
       address: this.formBuilder.control('', [Validators.minLength(5), Validators.required]),
       optionalAddress: this.formBuilder.control(''),
       paymentOption: this.formBuilder.control('', [Validators.required])
-    }, {validator: OrderComponent.equalsTo});
+    }, {validators: [OrderComponent.equalsTo], updateOn: 'blur'});
   }
 
   // tslint:disable-next-line:member-ordering
