@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RestaurantsService } from 'app/restaurants/restaurants.service';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import { RestaurantsService } from 'app/restaurants/restaurants.service';
+import { Observable } from 'rxjs';
 import { MenuItem } from '../menu-item/menu-item.model';
 
 @Component({
@@ -12,7 +12,7 @@ export class MenuComponent implements OnInit {
 
   menu: Observable<MenuItem[]>
 
-  constructor(private restaurantsService: RestaurantsService, 
+  constructor(private restaurantsService: RestaurantsService,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
